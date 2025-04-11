@@ -44,5 +44,5 @@ jobs:
 
       - name: Rodar semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # usando o secret da organização
         run: npm run semantic-release
