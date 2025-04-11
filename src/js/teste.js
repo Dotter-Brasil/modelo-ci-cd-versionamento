@@ -1,3 +1,5 @@
+/* global teste */
+
 function teste() {
   alert("vai");
 }
