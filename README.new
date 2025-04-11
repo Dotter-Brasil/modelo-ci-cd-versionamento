@@ -1,0 +1,21 @@
+Estrutura de Arquivos:
+
+├── css/
+│   ├── style.css
+├── src/
+│   └── js/
+│       ├── exemplo.js
+│   └── php/
+│       ├── exemplo.php
+├── index.html
+
+├── scripts/
+│   └── php-lint.js // codigo para validar os arquivos php
+
+
+├── .eslintrc.json
+├── .stylelintrc.json
+├── .htmlhintrc
+├── release.config.js (opcional)
+├── package.json
+├── CHANGELOG.md

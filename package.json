@@ -1,9 +1,26 @@
 {
   "name": "demo-repo",
-  "version": "0.2.0",
-  "description": "A sample package.json",
-  "dependencies": {
-    "@primer/css": "17.0.1"
+  "version": "1.0.0", 
+  "description": "Projeto HTML, CSS, JS e PHP no CodeSandbox",
+  "private": true, 
+  "scripts": {
+    "start": "php -S 0.0.0.0:8080",
+    "lint:html": "htmlhint '*.html'",
+    "lint:css": "stylelint 'css/**/*.css'",
+    "lint:js": "eslint 'src/js/**/*.js'",
+    "lint:php": "node scripts/php-lint.js",
+    "ci": "npm run lint:html && npm run lint:css && npm run lint:js && npm run lint:php",
+    "semantic-release": "semantic-release"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.0.0",
+    "@semantic-release/release-notes-generator": "^12.0.0",
+    "eslint": "^8.56.0",
+    "htmlhint": "^1.1.5",
+    "stylelint": "^15.10.0",
+    "semantic-release": "^23.0.0"
+  }
 }

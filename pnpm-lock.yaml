@@ -1,0 +1,22 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@primer/css':
+    specifier: 17.0.1
+    version: 17.0.1
+
+packages:
+
+  /@primer/css@17.0.1:
+    resolution: {integrity: sha512-qA0WOfkGthJVoUUqFpsaD3m2aeuGuVSZwMWsxZFUUufB3pfGfIG+vkpAqaJTGFJzbKD9ZfXyt1wfJwtyMcsVfg==}
+    dependencies:
+      '@primer/primitives': 4.3.2
+    dev: false
+
+  /@primer/primitives@4.3.2:
+    resolution: {integrity: sha512-5qBEQVchd2Vd2K2IT9mbQdI9E4IGiDVoLITlQXE2HIW9sWHREULSE4xg3W51i/XlDUIgnycELCI+Ept8V7v+og==}
+    dev: false
