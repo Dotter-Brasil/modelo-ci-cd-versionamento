@@ -45,7 +45,7 @@ jobs:
         run: node scripts/php-lint.js > relatorios/php-lint.txt || true
 
       - name: Upload dos relatórios
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: relatorios-lint
           path: relatorios
