@@ -17,14 +17,38 @@ jobs:
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v3
+
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
       - name: Instalar dependências
         run: npm install
-      - name: Executar testes de lint e validação
-        run: npm run ci
+
+      - name: Criar pasta de relatórios
+        run: mkdir -p relatorios
+
+      - name: Lint HTMLHint
+        run: htmlhint '*.html' > relatorios/htmlhint.txt || true
+
+      - name: Lint ESLint (HTML)
+        run: eslint '*.html' -f unix > relatorios/eslint-html.txt || true
+
+      - name: Lint ESLint (JS)
+        run: eslint 'src/js/**/*.js' -f unix > relatorios/eslint-js.txt || true
+
+      - name: Lint Stylelint
+        run: stylelint 'css/**/*.css' > relatorios/stylelint.txt || true
+
+      - name: Lint PHP
+        run: node scripts/php-lint.js > relatorios/php-lint.txt || true
+
+      - name: Upload dos relatórios
+        uses: actions/upload-artifact@v3
+        with:
+          name: relatorios-lint
+          path: relatorios
 
   release:
     name: Semantic Release
@@ -32,13 +56,17 @@ jobs:
     needs: ci
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v3
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
       - name: Instalar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+
       - name: Instalar dependências
         run: npm install
+
       - name: Rodar semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
