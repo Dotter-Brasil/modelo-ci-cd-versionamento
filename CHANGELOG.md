@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/Dotter-Brasil/demo-repository/compare/v1.1.0...v1.2.0) (2025-04-11)
+
+
+### Bug Fixes
+
+* erro bobo ([b8f9625](https://github.com/Dotter-Brasil/demo-repository/commit/b8f9625a1d3e13749016c3aca05662e108bfa413))
+* retorno  aos relatorios padrao ([44a6425](https://github.com/Dotter-Brasil/demo-repository/commit/44a6425446a20d1e1cb8a02553d089d34da52482))
+
+
+### Features
+
+* relatorios com validacao ([5d768f9](https://github.com/Dotter-Brasil/demo-repository/commit/5d768f91a5afc30f316a49e802ae4248b7bc0228))
+
 # [1.1.0](https://github.com/Dotter-Brasil/demo-repository/compare/v1.0.0...v1.1.0) (2025-04-11)
 
 
