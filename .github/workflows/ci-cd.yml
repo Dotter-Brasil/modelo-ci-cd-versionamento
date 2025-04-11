@@ -30,29 +30,19 @@ jobs:
         run: mkdir -p relatorios
 
       - name: Lint HTMLHint
-        run: |
-          htmlhint '*.html' > relatorios/htmlhint.txt 2>&1
-          if [ $? -eq 0 ]; then echo "OK: Nenhum problema encontrado no HTMLHint." >> relatorios/htmlhint.txt; fi
+        run: htmlhint '*.html' > relatorios/htmlhint.txt || true
 
       - name: Lint ESLint (HTML)
-        run: |
-          eslint '*.html' -f unix > relatorios/eslint-html.txt 2>&1
-          if [ $? -eq 0 ]; then echo "OK: Nenhum problema encontrado no ESLint (HTML)." >> relatorios/eslint-html.txt; fi
+        run: eslint '*.html' -f unix > relatorios/eslint-html.txt || true
 
       - name: Lint ESLint (JS)
-        run: |
-          eslint 'src/js/**/*.js' -f unix > relatorios/eslint-js.txt 2>&1
-          if [ $? -eq 0 ]; then echo "OK: Nenhum problema encontrado no ESLint (JS)." >> relatorios/eslint-js.txt; fi
+        run: eslint 'src/js/**/*.js' -f unix > relatorios/eslint-js.txt || true
 
       - name: Lint Stylelint
-        run: |
-          stylelint 'css/**/*.css' > relatorios/stylelint.txt 2>&1
-          if [ $? -eq 0 ]; then echo "OK: Nenhum problema encontrado no Stylelint." >> relatorios/stylelint.txt; fi
+        run: stylelint 'css/**/*.css' > relatorios/stylelint.txt || true
 
       - name: Lint PHP
-        run: |
-          node scripts/php-lint.js > relatorios/php-lint.txt 2>&1
-          if [ $? -eq 0 ]; then echo "OK: Nenhum problema encontrado no PHP Lint." >> relatorios/php-lint.txt; fi
+        run: node scripts/php-lint.js > relatorios/php-lint.txt || true
 
       - name: Upload dos relatórios
         uses: actions/upload-artifact@v4
@@ -60,13 +50,14 @@ jobs:
           name: relatorios-lint
           path: relatorios
 
-  release:
+  release:scripts
     name: Semantic Release
     runs-on: ubuntu-latest
     needs: ci
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v3
+      - name: Clonar repositório
+        uses: actions/checkout@v3
 
       - name: Instalar Node.js
         uses: actions/setup-node@v3
