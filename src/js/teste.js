@@ -1,4 +1,4 @@
-/* global teste */
+/* eslint-disable no-unused-vars */
 
 function teste() {
   alert("vai");
