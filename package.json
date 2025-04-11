@@ -1,8 +1,8 @@
 {
   "name": "demo-repo",
-  "version": "1.0.0", 
+  "version": "1.0.0",
   "description": "Projeto HTML, CSS, JS e PHP no CodeSandbox",
-  "private": true, 
+  "private": true,
   "scripts": {
     "start": "php -S 0.0.0.0:8080",
     "lint:html": "htmlhint '*.html'",
@@ -20,7 +20,8 @@
     "@semantic-release/release-notes-generator": "^12.0.0",
     "eslint": "^8.56.0",
     "htmlhint": "^1.1.4",
-    "stylelint": "^15.10.0",
-    "semantic-release": "^23.0.0"
+    "semantic-release": "^23.0.0",
+    "stylelint": "^16.18.0",
+    "stylelint-config-standard": "^38.0.0"
   }
 }
