@@ -8,6 +8,13 @@
       "ecmaVersion": 12,
       "sourceType": "module"
     },
-    "rules": {}
-  }
+    "rules": {},
+    "plugins": ["html"],
+    "overrides": [
+        {
+          "files": ["*.html"],
+          "processor": "html"
+        }
+    ]
+}
   
