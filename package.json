@@ -1,6 +1,6 @@
 {
   "name": "demo-repo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Projeto HTML, CSS, JS e PHP no CodeSandbox",
   "private": true,
   "repository": {
@@ -41,7 +41,10 @@
       [
         "@semantic-release/git",
         {
-          "assets": ["CHANGELOG.md", "package.json"],
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ],
           "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
       ]
