@@ -1,0 +1,16 @@
+# Sistema
+.DS_Store
+node_modules/
+npm-debug.log
+.env
+
+# PHP
+vendor/
+
+# CodeSandbox / VSCode
+.vscode/
+.sandbox/
+package-lock.json
+
+# GitHub Actions (mantemos!)
+!.github/workflows/
