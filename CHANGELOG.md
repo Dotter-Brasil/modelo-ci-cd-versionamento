@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.2.0...v1.3.0) (2025-04-17)
+
+
+### Features
+
+* modelos html, css ([d26da97](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/commit/d26da976277be4283b010c9b9cffc7626f558adb))
+
 # [1.2.0](https://github.com/Dotter-Brasil/demo-repository/compare/v1.1.0...v1.2.0) (2025-04-11)
 
 
