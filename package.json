@@ -1,11 +1,11 @@
 {
-  "name": "demo-repo",
+  "name": "modelo--ci-cd-versionamento",
   "version": "1.2.0",
-  "description": "Projeto HTML, CSS, JS e PHP no CodeSandbox",
+  "description": "Projeto modelo HTML, CSS, JS e PHP com CI, CD e Versionamento automatico",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Dotter-Brasil/demo-repository.git"
+    "url": "https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento"
   },
   "scripts": {
     "start": "php -S 0.0.0.0:8080",
