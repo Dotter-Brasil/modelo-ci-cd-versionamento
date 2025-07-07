@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.3.0...v1.4.0) (2025-07-07)
+
+
+### Features
+
+* variaveis css ([e6ca5da](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/commit/e6ca5da0c8e980554507999c3d3efd4c436635c9))
+
 # [1.3.0](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.2.0...v1.3.0) (2025-04-17)
 
 
