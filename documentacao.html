@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0"
+    />
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta name="theme-color" content="#023e7d" />
+
+    <title>Dcumentacao do Sistema</title>
+
+    <!--<link rel="stylesheet" href="css/bd.css" />-->
+    <link rel="stylesheet" href="css/style-doc.css" />
+    <link rel="stylesheet" href="css/chat.css" />
+
+    <!-- GitHub Markdown style -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <!-- Marked.js -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- script do char com inteligencia artificial -->
+    <script>
+      var script = document.createElement("script");
+      script.src = "/src/js/chat.js?no_cache=" + new Date().getTime();
+      document.head.appendChild(script);
+    </script>
+
+    <!-- script de navegacao e botoes -->
+    <script>
+      var script = document.createElement("script");
+      script.src = "src/js/navegador.js?no_cache=" + new Date().getTime();
+      document.head.appendChild(script);
+    </script>
+
+    <style>
+      .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: white;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Documentação de Sistema</h1>
+    </header>
+
+    <div class="conteudo">
+      <div id="output" class="markdown-body">Carregando...</div>
+    </div>
+
+    <i
+      id="speak-button"
+      class="fa fa-home icone"
+      style="display: flex"
+      onclick="loadMarkdown('documentacao/resumo_docmentacao.md')"
+    ></i>
+
+    <!-- Dotty - Chat com Assistente de IA-->
+    <i
+      id="chat-icone"
+      class="fa fa-commenting icone"
+      style="transform: translateY(50px); display: flex"
+      onclick="alternar('chat-icone', 'chat-container', 'block');"
+    ></i>
+
+    <div id="chat-container">
+      <div id="chat-header">
+        Dotty - Assistente de IA
+        <i
+          class="fa fa-times-rectangle"
+          onclick="alternar('chat-container', 'chat-icone', 'flex');"
+        ></i>
+      </div>
+      <div id="chat-messages"></div>
+      <i id="chat-loading" class="fa fa-commenting-o blink"> Dotty</i>
+      <div id="chat-input-container">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Digite sua pergunta..."
+        />
+        <button id="send-button" onclick="sendMessage(href);">Enviar</button>
+        <i
+          id="voice-button"
+          class="fa fa-volume-up icone"
+          style="display: flex"
+          onclick="ativa_conversa();"
+        ></i>
+      </div>
+    </div>
+
+    <script>
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose", // importante para permitir links e estilos
+        theme: "default", // ou 'neutral', 'dark'...
+      });
+
+      //var href = "documentacao/resumo_docmentacao.md"; // variavel com o endereco do conteudo
+      var href = "documentacao/docmentacao_documentador.md"; // variavel com o endereco do conteudo
+      var urlAction = ""; // anula a variavel global em caso de url definida na chamada de sendMessage()
+
+      async function loadMarkdown(url) {
+        const output = document.getElementById("output");
+        output.innerHTML = "Carregando: " + url;
+
+        href = url; // ajusta a url para interacao com chat de IA
+
+        try {
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            output.innerHTML = "Erro ao carregar o arquivo: " + url;
+            return;
+          }
+
+          const mdText = await response.text();
+
+          // Renderiza markdown em HTML
+          const html = marked.parse(mdText);
+          output.innerHTML = html;
+
+          // ⚠️ Converte blocos <pre><code class="language-mermaid">...</code></pre>
+          const codeBlocks = output.querySelectorAll(
+            "pre code.language-mermaid"
+          );
+
+          codeBlocks.forEach((block) => {
+            const parentPre = block.parentElement;
+            const code = block.textContent;
+
+            const mermaidDiv = document.createElement("div");
+            mermaidDiv.className = "mermaid";
+            mermaidDiv.innerHTML = code.trim();
+
+            // Substitui o <pre> inteiro
+            parentPre.replaceWith(mermaidDiv);
+          });
+
+          // Faz a renderização Mermaid de todos os blocos .mermaid
+          mermaid.init(undefined, output.querySelectorAll(".mermaid"));
+
+          // Intercepta cliques em links para carregar .md inline
+          const links = output.querySelectorAll('a[href$=".md"]');
+
+          links.forEach((link) => {
+            link.addEventListener("click", (event) => {
+              event.preventDefault();
+              //const href = link.getAttribute("href");
+              href = "documentacao/" + link.getAttribute("href");
+              if (!href.startsWith("http")) {
+                loadMarkdown(href);
+              } else {
+                window.open(href, "_blank");
+              }
+            });
+          });
+        } catch (error) {
+          output.innerHTML = "Erro: " + error;
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        //loadMarkdown("documentacao/resumo_docmentacao.md");
+        loadMarkdown("documentacao/documentacao_documentador.md");
+      });
+
+      // captura evento de tecla para enviar mensagem ao pressionar ENTER
+      document
+        .getElementById("chat-input")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            sendMessage(href);
+          }
+        });
+    </script>
+  </body>
+</html>

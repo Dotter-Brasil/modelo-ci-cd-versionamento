@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta name="theme-color" content="#023e7d" />
+
+    <title>Gerador de Documentação de Sistemas Dotter Brasil</title>
+
+    <link rel="stylesheet" href="css/style-doc.css" />
+
+    <script>
+      var script = document.createElement("script");
+      script.src = "src/js/documentador.js?no_cache=" + new Date().getTime();
+      document.head.appendChild(script);
+    </script>
+  </head>
+  <body onload="carregarArquivosHTML();">
+    <header>
+      <div class="logo">
+        <img
+          src="https://yata-apix-83b78b76-7409-4174-9b42-bba0ba047415.s3-object.locaweb.com.br/328a0b9e477347019118f4ed82e25b44.png"
+        />
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="content-section2">
+        <h1>Gerador Automático de Documentação</h1>
+        <h2>Simplifique a Geração de Documentação de seus Sistemas</h2>
+
+        <div class="container">
+          <label for="arquivoInicial">Escolha o arquivo HTML inicial:</label
+          ><br />
+          <select id="arquivoInicial"></select
+          ><br />
+
+          <button onclick="iniciarGeracao()">Iniciar Geração</button>
+
+          <div id="status">Aguardando ação do usuário...</div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://yata-apix-83b78b76-7409-4174-9b42-bba0ba047415.s3-object.locaweb.com.br/f29e10557f4245fb8ef4ec51a58aa7b2.png"
+          alt="Bula Digital"
+        />
+      </div>
+    </section>
+
+    <!-- Overlay de Carregamento -->
+    <div
+      id="loadingOverlay"
+      class="overlay"
+      style="display: none; width: 60%; height: 60%"
+    >
+      <div class="loader"></div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Dotter Brasil. Todos os direitos reservados.</p>
+    </footer>
+  </body>
+</html>
