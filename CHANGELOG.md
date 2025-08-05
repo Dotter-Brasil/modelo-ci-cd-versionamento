@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.4.0...v1.5.0) (2025-08-05)
+
+
+### Features
+
+* documentador ([b69457e](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/commit/b69457e4e020a1279527948759113e421676086a))
+
 # [1.4.0](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.3.0...v1.4.0) (2025-07-07)
 
 
