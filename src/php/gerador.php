@@ -253,5 +253,62 @@ $documentacaoFinal = corrigirMermaidClassDiagram($documentacaoFinal);
 file_put_contents($caminhoFinal, $documentacaoFinal);
 file_put_contents($docs . "/documentacao_bruta_{$sufixo}.md", $documentacaoCompleta);
 
-echo "\n📁 Documentação final salva em: documentacao_{$sufixo}.md\n";
+// === ETAPA 4: GERAR ARQUIVO MASTER UNIFICADO ===
+echo "\n🧩 Gerando arquivo MASTER unificado...\n";
+
+// Caminho relativo para links (ajuste conforme necessidade)
+$baseURLDocumentacao = './';         // pasta local ou URL base de 'documentacao'
+$baseURLCodigoFonte  = '../../';     // caminho relativo ou URL pública para os códigos fonte
+
+// Sumário com links internos e externos
+$sumario = "# Sumário\n\n";
+foreach ($arquivosDocumentados as $arquivo) {
+    $titulo = "Arquivo: $arquivo";
+    $id = strtolower(preg_replace('/[^a-z0-9]+/', '-', pathinfo($arquivo, PATHINFO_FILENAME)));
+    
+    $nomeMdParcial = "documentacao_bruta_" . preg_replace('/[^a-zA-Z0-9_\-\.]/', '_', basename($arquivo)) . ".md";
+    $linkMd = $baseURLDocumentacao . $nomeMdParcial;
+    $linkCodigo = $baseURLCodigoFonte . $arquivo;
+
+    $sumario .= "- [{$titulo}](#{$id})\n";
+    $sumario .= "  - 📄 [Ver Markdown individual]($linkMd)\n";
+    $sumario .= "  - 💻 [Ver Código-fonte]($linkCodigo)\n";
+}
+
+$tituloIntro = <<<TXT
+# Documentação Técnica Consolidada
+
+Esta documentação unificada foi gerada automaticamente com base nas boas práticas regulatórias (GAMP 5, ANVISA, FDA 21 CFR Part 11).
+
+Abaixo você encontrará:
+- Um índice navegável com links para os arquivos documentados
+- Acesso direto ao código-fonte analisado
+- Diagramas visuais e documentação inline gerada automaticamente
+
+TXT;
+
+$conclusao = <<<TXT
+
+---
+
+## Conclusão
+
+Este pacote de documentação oferece uma visão completa, validável e estruturada sobre o sistema analisado.
+
+Recomenda-se:
+- Revisar os diagramas Mermaid
+- Integrar a documentação à rastreabilidade dos requisitos
+- Anexar evidências de teste para validação formal
+
+TXT;
+
+// Junta tudo
+$documentacaoMaster = $tituloIntro . "\n" . $sumario . "\n\n" . $documentacaoFinal . "\n" . $conclusao;
+
+// Salva o arquivo master
+file_put_contents($docs . "/documentacao_MASTER.md", $documentacaoMaster);
+echo "📦 Arquivo master salvo como: documentacao_MASTER.md\n";
+
+
+// echo "\n📁 Documentação final salva em: documentacao_{$sufixo}.md\n";
 ?>

@@ -1,8 +1,10 @@
 # Documentação de Estilo CSS
 
-Este documento descreve a estrutura e o design do arquivo CSS que estiliza a interface de um site. O estilo é responsivo e utiliza variáveis CSS para facilitar a manutenção e a personalização.
+## Introdução
 
-## Estrutura Geral
+Este documento descreve a estrutura e as funcionalidades do arquivo CSS utilizado para estilizar uma página web. O arquivo faz uso de variáveis CSS para definir cores e tamanhos de fonte, garantindo consistência e facilidade de manutenção. Além disso, utiliza media queries para adaptar o layout a diferentes tamanhos de tela.
+
+## Estrutura do Arquivo
 
 ### Importação de Fontes
 
@@ -10,7 +12,7 @@ Este documento descreve a estrutura e o design do arquivo CSS que estiliza a int
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 ```
 
-- **Descrição**: Importa a fonte "Poppins" do Google Fonts, que é usada em todo o site para garantir uma tipografia moderna e consistente.
+- **Descrição**: Importa a fonte "Poppins" do Google Fonts, com pesos variando de 300 a 600, para uso em toda a página.
 
 ### Variáveis CSS
 
@@ -25,9 +27,9 @@ Este documento descreve a estrutura e o design do arquivo CSS que estiliza a int
 }
 ```
 
-- **Descrição**: Define variáveis de cor e tamanho de fonte para facilitar a manutenção e a personalização do tema.
+- **Descrição**: Define variáveis globais para cores principais, secundárias, de botões e fonte, além do tamanho padrão da fonte.
 
-### Reset e Configuração Global
+### Estilos Globais
 
 ```css
 * {
@@ -39,9 +41,7 @@ Este documento descreve a estrutura e o design do arquivo CSS que estiliza a int
 }
 ```
 
-- **Descrição**: Reseta margens e paddings, define o box-sizing para border-box e aplica a fonte global. O comportamento de rolagem suave melhora a experiência do usuário.
-
-## Layout do Corpo
+- **Descrição**: Reseta margens e preenchimentos, define o box-sizing para border-box, aplica a fonte Poppins e define um comportamento de rolagem suave.
 
 ### Corpo da Página
 
@@ -57,7 +57,7 @@ body {
 }
 ```
 
-- **Descrição**: Configura o corpo da página com um gradiente de fundo, fixa o background ao rolar e define o layout flexível.
+- **Descrição**: Configura o corpo da página com um gradiente de fundo, cor de fonte, e define o layout como flexível e em coluna.
 
 ### Cabeçalho
 
@@ -66,6 +66,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 100vw;
   padding: 20px calc(5vw);
   background: var(--cor-primaria);
   position: fixed;
@@ -75,11 +76,9 @@ header {
 }
 ```
 
-- **Descrição**: Estiliza o cabeçalho com um layout flexível, fixa no topo da página e garante que permaneça visível ao rolar.
+- **Descrição**: Estiliza o cabeçalho para ser fixo no topo, com espaçamento e alinhamento de itens.
 
-## Navegação
-
-### Menu de Navegação
+### Navegação
 
 ```css
 nav ul {
@@ -90,9 +89,26 @@ nav ul {
 }
 ```
 
-- **Descrição**: Define o menu de navegação como uma lista horizontal sem marcadores, com espaçamento entre os itens.
+- **Descrição**: Remove o estilo de lista padrão e define a navegação como flexível em linha.
 
-### Responsividade
+### Hero Section
+
+```css
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: center;
+  padding: 20px;
+  margin-top: 190px;
+}
+```
+
+- **Descrição**: Centraliza o conteúdo da seção hero, permitindo que os elementos se ajustem conforme necessário.
+
+### Media Queries
 
 #### Telas Largas
 
@@ -105,7 +121,7 @@ nav ul {
 }
 ```
 
-- **Descrição**: Em telas largas, os elementos da seção hero são dispostos em linha e alinhados à esquerda.
+- **Descrição**: Ajusta a direção do flex e o alinhamento do texto para telas maiores.
 
 #### Telas Estreitas
 
@@ -115,17 +131,12 @@ nav ul {
     flex-direction: column;
     text-align: center;
   }
-  .menu {
-    display: flex;
-  }
 }
 ```
 
-- **Descrição**: Em telas estreitas, os elementos da seção hero são empilhados verticalmente e centralizados. O menu é exibido como um botão.
+- **Descrição**: Ajusta a direção do flex e o alinhamento do texto para telas menores.
 
-## Animações
-
-### Fade In
+### Animações
 
 ```css
 @keyframes fadeIn {
@@ -140,11 +151,11 @@ nav ul {
 }
 ```
 
-- **Descrição**: Animação para elementos que aparecem gradualmente na tela, melhorando a experiência visual.
+- **Descrição**: Define uma animação de fade-in para elementos, criando um efeito de entrada suave.
 
 ## Diagramas
 
-### Diagrama de Classes (mermaid)
+### Diagrama de Classes (Mermaid)
 
 ```mermaid
 classDiagram
@@ -156,34 +167,48 @@ classDiagram
         --cor-fonte
         --tamanho-fonte
     }
-    class Body {
-        +background
-        +color
-        +display
-    }
     class Header {
-        +display
-        +position
-        +background
+        display
+        justify-content
+        align-items
+        max-width
+        padding
+        background
+        position
+        width
+        top
+        z-index
     }
-    class Nav {
-        +list-style
-        +display
+    class Hero {
+        display
+        align-items
+        justify-content
+        flex-wrap
+        gap
+        text-align
+        padding
+        margin-top
     }
-    Root <|-- Body
     Root <|-- Header
-    Root <|-- Nav
+    Root <|-- Hero
 ```
 
-### Diagrama de Fluxo (mermaid)
+### Diagrama de Fluxo (Mermaid)
 
 ```mermaid
 flowchart TD
-    A[Início] --> B{Tela Larga?}
-    B -->|Sim| C[Layout Horizontal]
-    B -->|Não| D[Layout Vertical]
-    C --> E[Fim]
-    D --> E
+    A[Início] --> B[Importar Fontes]
+    B --> C[Definir Variáveis]
+    C --> D[Estilos Globais]
+    D --> E[Estilizar Corpo da Página]
+    E --> F[Estilizar Cabeçalho]
+    F --> G[Configurar Navegação]
+    G --> H[Configurar Hero Section]
+    H --> I[Aplicar Media Queries]
+    I --> J[Definir Animações]
+    J --> K[Fim]
 ```
 
-Esta documentação fornece uma visão clara e concisa do estilo CSS aplicado ao site, com foco na responsividade e na experiência do usuário. As variáveis CSS e a estrutura modular facilitam a manutenção e a escalabilidade do design.
+## Conclusão
+
+Este documento fornece uma visão geral das funcionalidades e estrutura do arquivo CSS, facilitando a compreensão e manutenção do estilo da página. As variáveis CSS e media queries são utilizadas para garantir flexibilidade e responsividade, enquanto as animações adicionam dinamismo à interface.

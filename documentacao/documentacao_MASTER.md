@@ -1,3 +1,40 @@
+# Documentação Técnica Consolidada
+
+Esta documentação unificada foi gerada automaticamente com base nas boas práticas regulatórias (GAMP 5, ANVISA, FDA 21 CFR Part 11).
+
+Abaixo você encontrará:
+- Um índice navegável com links para os arquivos documentados
+- Acesso direto ao código-fonte analisado
+- Diagramas visuais e documentação inline gerada automaticamente
+
+# Sumário
+
+- [Arquivo: documentador.html](#documentador)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_documentador.html.md)
+  - 💻 [Ver Código-fonte](../../documentador.html)
+- [Arquivo: css/style-doc.css](#style-doc)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_style-doc.css.md)
+  - 💻 [Ver Código-fonte](../../css/style-doc.css)
+- [Arquivo: src/js/documentador.js](#documentador)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_documentador.js.md)
+  - 💻 [Ver Código-fonte](../../src/js/documentador.js)
+- [Arquivo: src/php/lista_html.php](#lista-html)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_lista_html.php.md)
+  - 💻 [Ver Código-fonte](../../src/php/lista_html.php)
+- [Arquivo: src/php/gerador.php](#gerador)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_gerador.php.md)
+  - 💻 [Ver Código-fonte](../../src/php/gerador.php)
+- [Arquivo: index.html](#index)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_index.html.md)
+  - 💻 [Ver Código-fonte](../../index.html)
+- [Arquivo: css/style.css](#style)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_style.css.md)
+  - 💻 [Ver Código-fonte](../../css/style.css)
+- [Arquivo: src/js/teste.js](#teste)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_teste.js.md)
+  - 💻 [Ver Código-fonte](../../src/js/teste.js)
+
+
 # Documentação Técnica do Projeto
 
 ## Introdução Geral
@@ -328,3 +365,14 @@ Este pacote de documentação oferece uma visão completa, validável e estrutur
 - Anexar evidências de teste para validação formal.
 
 A documentação gerada fornece uma base sólida para auditorias e revisões técnicas, garantindo que o sistema esteja em conformidade com os padrões regulatórios exigidos. É essencial manter a documentação atualizada e revisada regularmente para refletir quaisquer mudanças no sistema ou nos requisitos regulatórios.
+
+---
+
+## Conclusão
+
+Este pacote de documentação oferece uma visão completa, validável e estruturada sobre o sistema analisado.
+
+Recomenda-se:
+- Revisar os diagramas Mermaid
+- Integrar a documentação à rastreabilidade dos requisitos
+- Anexar evidências de teste para validação formal

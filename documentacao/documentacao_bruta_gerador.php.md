@@ -1,86 +1,52 @@
-# Documentação Técnica do Sistema de Geração de Documentação
+# Documentação Técnica Consolidada
 
 ## Introdução
-Este documento descreve o sistema de geração automática de documentação para projetos de software, compatível com padrões regulatórios como GAMP5, FDA 21 CFR Part 11 e ANVISA. A ferramenta analisa arquivos de um projeto, identifica suas dependências e gera documentação detalhada, incluindo comentários técnicos, documentação inline (PHPDoc/JSDoc) e diagramas visuais (Mermaid).
+
+Este documento fornece uma visão abrangente e estruturada da documentação técnica gerada automaticamente para o sistema, em conformidade com as práticas regulatórias GAMP 5, ANVISA e FDA 21 CFR Part 11. A documentação foi produzida para garantir clareza, qualidade e compatibilidade com auditorias regulatórias.
 
 ## Índice
-- [Introdução](#introdução)
-- [Arquivos Documentados](#arquivos-documentados)
-- [Detalhes por Arquivo](#detalhes-por-arquivo)
-  - [gerador.php](#geradorphp)
-- [Conclusão e Recomendações](#conclusão-e-recomendações)
 
-## Arquivos Documentados
-- `gerador.php`
+- [Arquivo: gerador.php](#arquivo-geradorphp)
+  - 📄 [Ver Markdown individual](./documentacao_bruta_gerador_php.md)
+  - 💻 [Ver Código-fonte](../../src/php/gerador.php)
 
-## Detalhes por Arquivo
+## Arquivo: gerador.php
 
-### gerador.php
+### Comentários Técnicos Explicativos
 
-#### Descrição Geral
-O arquivo `gerador.php` é responsável por analisar um projeto de software, identificar arquivos e suas dependências, e gerar documentação automática. Ele utiliza a API do OpenAI para processar e documentar o código.
+O arquivo `gerador.php` é responsável por gerar documentação automática para o sistema. Ele utiliza a API do ChatGPT para analisar arquivos HTML, identificar referências a outros arquivos (JS, CSS, PHP) e gerar documentação detalhada para cada um deles.
 
-#### Funcionalidades Principais
+### Documentação Inline (PHPDoc)
 
-1. **Configuração Inicial**
-   - Define as configurações de tempo de execução e cabeçalhos HTTP para streaming de resposta.
-   - Carrega a chave da API do OpenAI e define o modelo a ser utilizado.
+/**
+ * Chama a API do ChatGPT para gerar respostas baseadas em mensagens fornecidas.
+ *
+ * @param array $mensagens Mensagens a serem enviadas para a API.
+ * @param string $apiKey Chave de API para autenticação.
+ * @param string $model Modelo a ser utilizado na API.
+ * @return array Resposta da API em formato JSON decodificado.
+ */
+function chamarChatGPT($mensagens, $apiKey, $model) {
+    // Implementação da função...
+}
 
-2. **Função `chamarChatGPT`**
-   - Faz uma chamada à API do OpenAI para obter respostas baseadas em prompts fornecidos.
-   - Trata erros de comunicação e resposta da API.
+### Diagramas
 
-   ```php
-   /**
-    * Faz uma chamada à API do ChatGPT.
-    *
-    * @param array $mensagens Mensagens a serem enviadas à API.
-    * @param string $apiKey Chave da API do OpenAI.
-    * @param string $model Modelo de IA a ser utilizado.
-    * @return array Resposta da API.
-    */
-   function chamarChatGPT($mensagens, $apiKey, $model) {
-       // Implementação da função
-   }
-   ```
+#### Diagrama de Fluxo (Mermaid Flowchart)
 
-3. **Função `corrigirMermaidClassDiagram`**
-   - Corrige e formata diagramas de classe Mermaid extraídos da documentação.
-
-   ```php
-   /**
-    * Corrige diagramas de classe Mermaid em markdown.
-    *
-    * @param string $markdown Conteúdo markdown com diagramas Mermaid.
-    * @return string Markdown corrigido.
-    */
-   function corrigirMermaidClassDiagram($markdown) {
-       // Implementação da função
-   }
-   ```
-
-4. **Identificação de Arquivos e Dependências**
-   - Analisa o arquivo inicial e identifica arquivos referenciados diretamente e indiretamente.
-   - Utiliza a API do OpenAI para identificar dependências de arquivos.
-
-5. **Geração de Documentação**
-   - Processa cada arquivo identificado, gera documentação detalhada e salva em formato Markdown.
-
-#### Diagramas
-
-##### Diagrama de Fluxo (Flowchart)
 ```mermaid
 flowchart TD
     A[Início] --> B[Configuração Inicial]
     B --> C{Arquivo Inicial Encontrado?}
     C -->|Sim| D[Identificar Arquivos Referenciados]
-    C -->|Não| E[Fim]
-    D --> F[Identificar Dependências]
-    F --> G[Gerar Documentação]
-    G --> E
+    C -->|Não| E[Erro: Arquivo Não Encontrado]
+    D --> F[Analisar Arquivos Individualmente]
+    F --> G[Gerar Documentação Final]
+    G --> H[Fim]
 ```
 
-##### Diagrama de Classes (ClassDiagram)
+#### Diagrama de Classes (Mermaid ClassDiagram)
+
 ```mermaid
 classDiagram
     class Gerador {
@@ -89,5 +55,16 @@ classDiagram
     }
 ```
 
-## Conclusão e Recomendações
-O sistema de geração automática de documentação oferece uma solução eficiente para documentar projetos de software, garantindo conformidade com padrões regulatórios. Recomenda-se a revisão periódica das configurações e atualizações da API para manter a eficácia do sistema. Além disso, a validação manual da documentação gerada é crucial para garantir precisão e completude.
+### Conclusão e Recomendações
+
+Este pacote de documentação oferece uma visão completa, validável e estruturada sobre o sistema analisado. Recomenda-se:
+
+- Revisar os diagramas Mermaid para garantir precisão.
+- Integrar a documentação à rastreabilidade dos requisitos.
+- Anexar evidências de teste para validação formal.
+
+---
+
+## Conclusão
+
+A documentação gerada fornece uma base sólida para auditorias e revisões técnicas, garantindo que o sistema esteja em conformidade com os padrões regulatórios exigidos. É essencial manter a documentação atualizada e revisada regularmente para refletir quaisquer mudanças no sistema ou nos requisitos regulatórios.

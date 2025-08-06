@@ -1,83 +1,96 @@
-# Documentação do Sistema de Gerador Automático de Documentação
+# Documentação do Sistema: Gerador Automático de Documentação
 
-## Introdução
-Este documento descreve a estrutura e funcionalidades do sistema de Gerador Automático de Documentação desenvolvido pela Dotter Brasil. O sistema é projetado para simplificar a geração de documentação de sistemas, garantindo conformidade com padrões regulatórios como GAMP5, FDA 21 CFR Part 11 e ANVISA.
+Este documento fornece uma visão geral do sistema "Gerador Automático de Documentação" desenvolvido pela Dotter Brasil. A aplicação é projetada para simplificar a geração de documentação de sistemas, garantindo conformidade com normas como GAMP5, FDA 21 CFR Part 11 e ANVISA.
 
-## Estrutura do Documento HTML
+## Estrutura do Documento
 
-### Cabeçalho
-O cabeçalho do documento HTML (`<head>`) contém metadados essenciais para o funcionamento e apresentação da página. Inclui configurações de cache, tema de cor e a inclusão dinâmica do script JavaScript necessário para a funcionalidade do sistema.
+1. **Visão Geral do Sistema**
+2. **Funcionalidades Principais**
+3. **Diagramas de Arquitetura**
+4. **Detalhamento do Código**
+5. **Conformidade Regulatória**
 
-### Corpo do Documento
-O corpo (`<body>`) é composto por várias seções:
+---
 
-- **Header**: Contém o logotipo da Dotter Brasil.
-- **Hero Section**: Apresenta o título e subtítulo do sistema, além de um formulário para seleção do arquivo HTML inicial e um botão para iniciar a geração da documentação.
-- **Loading Overlay**: Uma sobreposição que indica o carregamento em andamento.
-- **Footer**: Informações de direitos autorais.
+## 1. Visão Geral do Sistema
 
-## Funcionalidades
+O sistema é uma aplicação web que permite aos usuários selecionar um arquivo HTML inicial para gerar automaticamente a documentação associada. Ele é acessível via navegador e não requer instalação local.
 
-### Seleção de Arquivo Inicial
-Permite ao usuário escolher um arquivo HTML inicial a partir de uma lista suspensa. Esta funcionalidade é essencial para determinar o ponto de partida da geração de documentação.
+## 2. Funcionalidades Principais
 
-### Iniciar Geração
-Um botão que, ao ser clicado, inicia o processo de geração automática de documentação. A função `iniciarGeracao()` é responsável por gerenciar este processo.
+- **Seleção de Arquivo HTML Inicial**: O usuário pode escolher um arquivo HTML de uma lista para iniciar o processo de documentação.
+- **Geração Automática de Documentação**: Após a seleção do arquivo, a documentação é gerada automaticamente.
+- **Feedback ao Usuário**: O sistema fornece feedback visual sobre o status do processo de geração.
 
-### Status de Ação
-Um elemento de texto que exibe o status atual do sistema, informando o usuário sobre o que está acontecendo ou o que é necessário fazer.
+## 3. Diagramas de Arquitetura
 
-### Overlay de Carregamento
-Uma sobreposição que aparece durante o processamento para indicar que o sistema está trabalhando na geração da documentação.
-
-## Diagrama de Fluxo
+### Diagrama de Fluxo (Flowchart)
 
 ```mermaid
 flowchart TD
-    A[Início] --> B[Selecionar Arquivo HTML]
-    B --> C{Arquivo Selecionado?}
+    A[Início] --> B[Carregar Arquivos HTML]
+    B --> C{Usuário Seleciona Arquivo?}
     C -->|Sim| D[Iniciar Geração]
-    C -->|Não| E[Esperar Seleção]
-    D --> F[Exibir Status]
-    F --> G[Mostrar Overlay de Carregamento]
-    G --> H[Fim]
+    C -->|Não| E[Fim]
+    D --> F[Gerar Documentação]
+    F --> G[Exibir Status]
+    G --> E
 ```
 
-## Diagrama de Classes
+### Diagrama de Caso de Uso (Use Case)
 
 ```mermaid
-classDiagram
-    class Documentador {
-        +carregarArquivosHTML()
-        +iniciarGeracao()
-    }
-    class UI {
-        +atualizarStatus()
-        +mostrarOverlay()
-    }
-    Documentador --> UI
+usecaseDiagram
+    actor Usuário
+    Usuário --> (Selecionar Arquivo HTML)
+    Usuário --> (Iniciar Geração)
+    (Iniciar Geração) --> (Gerar Documentação)
+    (Gerar Documentação) --> (Exibir Status)
 ```
 
-## JSDoc para Funções JavaScript
+## 4. Detalhamento do Código
 
-### Função: carregarArquivosHTML
+### HTML
+
+O arquivo `documentador.html` é o ponto de entrada da aplicação. Ele define a estrutura básica da interface do usuário.
+
+#### Elementos Principais
+
+- **Cabeçalho e Rodapé**: Incluem a marca da empresa e direitos autorais.
+- **Seção Hero**: Contém o título e descrição do sistema, além de controles para interação do usuário.
+- **Overlay de Carregamento**: Exibido durante o processo de geração para indicar que o sistema está em operação.
+
+### JavaScript
+
+O script `documentador.js` é responsável por carregar dinamicamente o arquivo JavaScript necessário e gerenciar a lógica de geração de documentação.
+
+#### Funções Principais
+
 ```javascript
 /**
- * @function carregarArquivosHTML
- * @description Carrega a lista de arquivos HTML disponíveis para seleção.
+ * Carrega os arquivos HTML disponíveis para seleção.
  */
-```
+function carregarArquivosHTML() {
+    // Lógica para carregar e popular o dropdown de arquivos HTML
+}
 
-### Função: iniciarGeracao
-```javascript
 /**
- * @function iniciarGeracao
- * @description Inicia o processo de geração automática de documentação.
+ * Inicia o processo de geração de documentação.
  */
+function iniciarGeracao() {
+    // Lógica para iniciar a geração de documentação
+    document.getElementById('status').innerText = "Geração em andamento...";
+}
 ```
 
-## Conformidade Reguladora
-O sistema é projetado para atender aos requisitos de conformidade com GAMP5, FDA 21 CFR Part 11 e ANVISA, assegurando que a documentação gerada seja válida para auditorias e inspeções regulatórias.
+## 5. Conformidade Regulatória
 
-## Conclusão
-Este documento fornece uma visão geral do sistema de Gerador Automático de Documentação, destacando suas principais funcionalidades e estrutura. O uso de diagramas e JSDoc ajuda a ilustrar o funcionamento interno e a interação entre os componentes do sistema.
+O sistema foi desenvolvido em conformidade com as seguintes normas:
+
+- **GAMP5**: Garantia de que o sistema é adequado para o uso pretendido e que os riscos são geridos de forma eficaz.
+- **FDA 21 CFR Part 11**: Assegura que os registros eletrônicos são confiáveis e equivalentes aos registros em papel.
+- **ANVISA**: Conformidade com as regulamentações brasileiras para sistemas de informação em saúde.
+
+---
+
+Esta documentação fornece uma visão abrangente do sistema e suas funcionalidades, garantindo que os usuários possam operar e compreender o sistema de forma eficaz e em conformidade com as regulamentações aplicáveis.

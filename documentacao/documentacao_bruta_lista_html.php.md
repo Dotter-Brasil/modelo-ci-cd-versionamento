@@ -1,88 +1,85 @@
-# Documentação do Código PHP: `lista_html.php`
+# Documentação do Código: `lista_html.php`
 
 ## Visão Geral
 
-Este script PHP é responsável por buscar todos os arquivos HTML na raiz de um diretório específico e retornar seus nomes em formato JSON. Ele utiliza funções nativas do PHP para manipulação de arquivos e arrays, e é projetado para ser executado em um ambiente de servidor web.
+Este script PHP é responsável por buscar todos os arquivos HTML na raiz do diretório especificado e retornar seus nomes em formato JSON. Esta funcionalidade pode ser útil para aplicações que precisam listar ou manipular arquivos HTML de forma dinâmica.
 
 ## Conformidade Regulatória
 
-- **GAMP5**: Este script segue as boas práticas de automação de sistemas, garantindo que as funções sejam claras e bem definidas.
-- **FDA 21 CFR Part 11**: O script não manipula dados de usuários ou registros eletrônicos, portanto, não se aplica diretamente. No entanto, a estrutura do código é mantida para garantir a integridade e a segurança dos dados processados.
-- **ANVISA**: O código segue práticas de desenvolvimento que garantem a rastreabilidade e a integridade dos dados.
+- **GAMP5**: O script segue as boas práticas de automação, garantindo que a busca e listagem de arquivos seja feita de forma consistente e controlada.
+- **FDA 21 CFR Part 11**: Não há manipulação direta de dados eletrônicos que exijam conformidade com assinaturas eletrônicas, mas o script deve ser auditado para garantir a integridade dos dados listados.
+- **ANVISA**: A listagem de arquivos deve ser validada para garantir que apenas arquivos autorizados sejam acessados, evitando exposição de dados sensíveis.
 
-## Funcionalidades do Código
+## Estrutura do Código
 
-### Descrição das Funções
-
-#### `glob`
+### Função Principal
 
 ```php
+<?php
+
+// busca todos os arquivos html na raiz
 $arquivos = glob('../../*.html');
-```
-
-- **Descrição**: Busca todos os arquivos com extensão `.html` no diretório especificado (`../../`).
-- **Uso**: Utilizado para listar arquivos HTML presentes na raiz do diretório pai.
-
-#### `array_map`
-
-```php
 $nomes = array_map('basename', $arquivos);
-```
-
-- **Descrição**: Aplica a função `basename` a cada elemento do array `$arquivos`, retornando apenas o nome do arquivo sem o caminho completo.
-- **Uso**: Facilita a manipulação e exibição dos nomes dos arquivos.
-
-#### `header`
-
-```php
 header('Content-Type: application/json');
+echo json_encode($nomes);
+?>
 ```
 
-- **Descrição**: Define o tipo de conteúdo da resposta HTTP como JSON.
-- **Uso**: Essencial para que o cliente que consome o script saiba que o retorno é um JSON.
+#### Descrição
 
-#### `json_encode`
+- **Busca de Arquivos**: Utiliza a função `glob()` para procurar todos os arquivos com extensão `.html` no diretório especificado.
+- **Extração de Nomes**: `array_map()` com a função `basename` é usado para extrair apenas os nomes dos arquivos, sem o caminho completo.
+- **Resposta JSON**: Define o cabeçalho HTTP para `application/json` e utiliza `json_encode()` para converter a lista de nomes de arquivos em um formato JSON.
+
+### JSDoc/PHPDoc
 
 ```php
-echo json_encode($nomes);
+/**
+ * Busca e lista todos os arquivos HTML na raiz do diretório especificado.
+ *
+ * @return void
+ * @throws Exception Se ocorrer um erro durante a busca ou codificação JSON.
+ */
+function listarArquivosHtml() {
+    // Implementação da função conforme descrito acima.
+}
 ```
 
-- **Descrição**: Converte o array `$nomes` em uma string JSON.
-- **Uso**: Permite que os dados sejam facilmente consumidos por aplicações web.
+## Diagramas
 
-### Diagrama de Fluxo
+### Diagrama de Fluxo (Flowchart)
 
 ```mermaid
 flowchart TD
     A[Início] --> B[Buscar arquivos HTML]
     B --> C[Extrair nomes dos arquivos]
-    C --> D[Definir cabeçalho JSON]
-    D --> E[Retornar nomes como JSON]
+    C --> D[Configurar cabeçalho JSON]
+    D --> E[Codificar nomes em JSON]
     E --> F[Fim]
 ```
 
-### Diagrama de Classes
+### Diagrama de Classes (ClassDiagram)
 
 ```mermaid
 classDiagram
     class ListaHtml {
-        +glob()
-        +array_map()
-        +header()
-        +json_encode()
+        +listarArquivosHtml() void
     }
 ```
 
-### Caso de Uso
+### Diagrama de Caso de Uso (UseCase)
 
 ```mermaid
 usecaseDiagram
     actor Usuário
-    Usuário --> (Executar Script)
-    (Executar Script) --> (Buscar Arquivos HTML)
-    (Buscar Arquivos HTML) --> (Retornar JSON)
+    Usuário --> (Listar Arquivos HTML)
 ```
 
-## Considerações Finais
+## Considerações de Segurança
 
-Este script é uma solução simples e eficaz para listar arquivos HTML em um diretório específico e retornar seus nomes em formato JSON. Ele é projetado para ser facilmente integrado em sistemas maiores, onde a listagem de arquivos HTML é necessária. A conformidade com as regulamentações mencionadas é garantida através de práticas de codificação seguras e claras.
+- **Validação de Caminho**: Certifique-se de que o caminho especificado para a busca de arquivos não permita acesso não autorizado a diretórios sensíveis.
+- **Controle de Acesso**: Implemente mecanismos de autenticação e autorização para garantir que apenas usuários autorizados possam executar este script.
+
+## Conclusão
+
+Este script é uma solução simples e eficaz para listar arquivos HTML em um diretório específico. A documentação e os diagramas fornecidos devem ajudar na compreensão e manutenção do código, garantindo que ele atenda aos requisitos regulatórios e de segurança.

@@ -2,103 +2,122 @@
 
 ## Visão Geral
 
-Este projeto é uma plataforma web para a gestão e publicação de bulas digitais, garantindo conformidade com as regulamentações da ANVISA, GAMP5 e FDA 21 CFR Part 11. A aplicação oferece funcionalidades como geração de QR Codes, segurança robusta, acessibilidade, e gerenciamento simplificado de bulas digitais.
+Este projeto é uma aplicação web para a gestão e publicação de bulas digitais, em conformidade com as regulamentações da ANVISA, FDA 21 CFR Part 11 e GAMP 5. A solução oferece funcionalidades como geração de QR Codes, segurança avançada, acessibilidade e gerenciamento simplificado, garantindo a conformidade com a RDC 885.
 
-### Estrutura do Documento
+## Estrutura do Projeto
 
-1. Introdução
-2. Funcionalidades Principais
-3. Conformidade Regulatória
-4. Acessibilidade
-5. Diagrama de Fluxo
-6. Diagrama de Classes
-7. Diagrama de Casos de Uso
+O projeto é composto por um arquivo HTML principal (`index.html`) que organiza a estrutura do site e inclui referências a arquivos CSS e JavaScript externos. A seguir, detalhamos as principais seções e funcionalidades do projeto.
 
-## 1. Introdução
-
-A Bula Digital Dotter Brasil é uma solução inovadora que simplifica a gestão de bulas digitais, garantindo que estejam sempre em conformidade com as regulamentações vigentes. A plataforma é projetada para ser intuitiva e segura, facilitando o acesso e o controle das informações.
-
-## 2. Funcionalidades Principais
-
-### 2.1 Geração de QR Codes
-
-- **Descrição**: Gera automaticamente QR codes para bulas digitais, facilitando o acesso rápido e fácil para pacientes e profissionais de saúde.
-- **Benefícios**: Aumenta a acessibilidade e a eficiência no acesso às informações.
-
-### 2.2 Segurança Robusta
-
-- **Descrição**: Implementa controle de acesso rigoroso e um sistema de log de eventos completo.
-- **Benefícios**: Garante a segurança e a integridade das informações.
-
-### 2.3 Validação Completa
-
-- **Descrição**: Valida sistemas em conformidade com as melhores práticas da indústria farmacêutica.
-- **Benefícios**: Assegura o cumprimento das normas da ANVISA.
-
-## 3. Conformidade Regulatória
-
-A plataforma está alinhada com as diretrizes do FDA (21 CFR Part 11) e ANVISA, garantindo que os dados dos pacientes sejam protegidos e mantidos de forma confidencial. A conformidade com GAMP 5 também é assegurada para garantir a qualidade e segurança.
-
-## 4. Acessibilidade
-
-### 4.1 LIBRAS
-
-- **Descrição**: Usuários podem interagir com a bula digital e receber seu conteúdo na Língua Brasileira de Sinais.
-
-### 4.2 Áudio
-
-- **Descrição**: Permite ouvir cada tópico da bula digital.
-
-### 4.3 Assistente de Inteligência Artificial
-
-- **Descrição**: Esclarece dúvidas através de interação com a Dotty, assistente de inteligência artificial.
-
-## 5. Diagrama de Fluxo
+### Diagrama de Fluxo
 
 ```mermaid
 flowchart TD
-    A[Início] --> B[Usuário acessa a plataforma]
-    B --> C{Usuário autenticado?}
-    C -->|Sim| D[Exibe funcionalidades]
-    C -->|Não| E[Redireciona para login]
-    D --> F[Usuário gera QR Code]
-    D --> G[Usuário acessa bula]
-    G --> H[Usuário interage com assistente]
-    H --> I[Fim]
+    A[Início] --> B[Carregar Página]
+    B --> C{Cabeçalho}
+    C -->|Logo| D[Exibir Logo]
+    C -->|Menu| E[Exibir Menu]
+    B --> F{Seções}
+    F --> G[Hero]
+    F --> H[Benefícios]
+    F --> I[Funcionalidades]
+    F --> J[Compromisso]
+    F --> K[Gerenciamento]
+    F --> L[Acessibilidade]
+    F --> M[Sobre]
+    F --> N[Contato]
+    B --> O[Rodar Script]
+    O --> P[Carregar JavaScript]
+    P --> Q[Fim]
 ```
 
-## 6. Diagrama de Classes
+### Estrutura HTML
 
-```mermaid
-classDiagram
-    class Plataforma {
-        +gerarQRCode()
-        +validarSistema()
-        +gerenciarBulas()
-    }
-    class Usuario {
-        +autenticar()
-        +acessarBula()
-    }
-    class AssistenteAI {
-        +interagir()
-    }
-    Plataforma --> Usuario
-    Plataforma --> AssistenteAI
+#### Cabeçalho
+
+O cabeçalho contém o logo da empresa e um menu de navegação que permite acesso rápido às diferentes seções da página. A funcionalidade de menu é controlada por um ícone que, ao ser clicado, alterna a visibilidade da lista de navegação.
+
+```html
+<header>
+  <div class="logo">
+    <img src="logo_url" alt="Logo Dotter Brasil" />
+  </div>
+  <div class="menu">
+    <i class="fa fa-bars" onclick="toggleMenu()"></i>
+  </div>
+  <nav class="listaMenu" id="listaMenu">
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#beneficios">Benefícios</a></li>
+      <li><a href="#funcionalidades">Funcionalidades</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+</header>
 ```
 
-## 7. Diagrama de Casos de Uso
+#### Seções Principais
+
+Cada seção da página (`hero`, `beneficios`, `funcionalidades`, etc.) é projetada para destacar diferentes aspectos do produto, como benefícios, funcionalidades, compromisso com a conformidade regulatória, e informações de contato.
+
+```html
+<section class="hero">
+  <div class="content-section2">
+    <h1>Bula Digital ANVISA</h1>
+    <h2>Simplifique a Gestão de suas Bulas Digitais</h2>
+    <p>A solução completa para publicação, edição e controle de bulas digitais em total conformidade com a RDC 885.</p>
+    <a href="#contato" class="cta-button">Saiba Mais</a>
+  </div>
+  <div class="hero-image">
+    <img src="hero_image_url" alt="Bula Digital" />
+  </div>
+</section>
+```
+
+### Funcionalidades JavaScript
+
+#### Carregamento Dinâmico de Scripts
+
+O script JavaScript é carregado dinamicamente para garantir que a versão mais recente seja utilizada, evitando problemas de cache.
+
+```html
+<script>
+  var script = document.createElement("script");
+  script.src = "src/js/teste.js?no_cache=" + new Date().getTime();
+  document.head.appendChild(script);
+</script>
+```
+
+#### Função de Alternância do Menu
+
+A função `toggleMenu` é responsável por alternar a visibilidade do menu de navegação.
+
+```javascript
+/**
+ * Alterna a visibilidade do menu de navegação.
+ */
+function toggleMenu() {
+  document.querySelector('.listaMenu ul').classList.toggle('active');
+}
+```
+
+### Conformidade Regulatória
+
+A plataforma está em conformidade com as diretrizes do FDA (21 CFR Part 11), ANVISA e GAMP 5, garantindo que os dados dos pacientes sejam protegidos e mantidos de forma confidencial.
+
+### Diagrama de Caso de Uso
 
 ```mermaid
 usecaseDiagram
-    actor Usuario
+    actor Usuário
     actor Administrador
-    Usuario --> (Acessar Bula)
-    Usuario --> (Interagir com Assistente)
+    Usuário --> (Acessar Bula Digital)
+    Usuário --> (Consultar Benefícios)
+    Usuário --> (Enviar Contato)
     Administrador --> (Gerenciar Bulas)
-    Administrador --> (Validar Sistema)
+    Administrador --> (Acessar Repositório RIEP)
 ```
 
 ## Conclusão
 
-A Bula Digital Dotter Brasil é uma plataforma completa e segura para a gestão de bulas digitais, garantindo conformidade com as regulamentações e oferecendo funcionalidades avançadas para acessibilidade e segurança.
+Este projeto oferece uma solução robusta e segura para a gestão de bulas digitais, atendendo às exigências regulatórias e proporcionando uma experiência de usuário acessível e eficiente. A documentação visa fornecer uma visão clara das funcionalidades e da estrutura do sistema, facilitando sua implementação e manutenção.

@@ -2,21 +2,22 @@
 
 ## Visão Geral
 
-Este sistema é responsável por carregar arquivos HTML e iniciar a geração de documentação baseada nesses arquivos. A implementação segue as diretrizes de GAMP5, FDA 21 CFR Part 11 e ANVISA, garantindo que o sistema seja seguro, eficiente e em conformidade com os regulamentos aplicáveis.
+Este sistema foi desenvolvido para automatizar a geração de documentação de arquivos HTML. A aplicação busca arquivos disponíveis, permite ao usuário selecionar um arquivo e, em seguida, gera a documentação correspondente, exibindo o progresso em tempo real.
 
-### Funcionalidades Principais
+### Requisitos Regulatórios
 
-1. **Carregar Arquivos HTML**: Carrega uma lista de arquivos HTML disponíveis para seleção.
-2. **Iniciar Geração de Documentação**: Inicia o processo de geração de documentação para o arquivo selecionado.
+- **GAMP5**: Garantir que o software seja validado e que os processos sejam documentados de forma a garantir a qualidade.
+- **FDA 21 CFR Part 11**: Assegurar que os registros eletrônicos sejam confiáveis e equivalentes aos registros em papel.
+- **ANVISA**: Cumprir com as regulamentações brasileiras para sistemas informatizados em saúde.
 
 ## Diagrama de Fluxo
 
 ```mermaid
 flowchart TD
     A[Carregar Arquivos HTML] --> B[Selecionar Arquivo]
-    B --> C[Iniciar Geração de Documentação]
-    C --> D[Exibir Status]
-    D --> E[Fim]
+    B --> C[Iniciar Geração]
+    C --> D[Exibir Progresso]
+    D --> E[Finalizar]
 ```
 
 ## Diagrama de Classes
@@ -35,21 +36,23 @@ classDiagram
 usecaseDiagram
     actor Usuário
     Usuário --> (Carregar Arquivos HTML)
-    Usuário --> (Iniciar Geração de Documentação)
+    Usuário --> (Selecionar Arquivo)
+    Usuário --> (Iniciar Geração)
+    Usuário --> (Visualizar Progresso)
 ```
 
-## Detalhamento das Funções
+## Código Fonte
 
 ### Função `carregarArquivosHTML`
 
-Carrega uma lista de arquivos HTML disponíveis para seleção pelo usuário.
-
 ```js
 /**
- * Carrega a lista de arquivos HTML disponíveis e os adiciona a um elemento select.
- * @async
  * @function carregarArquivosHTML
- * @returns {Promise<void>} - Promessa que representa a conclusão da operação de carregamento.
+ * @description Carrega a lista de arquivos HTML disponíveis para seleção.
+ * @async
+ * @returns {Promise<void>}
+ * @example
+ * carregarArquivosHTML();
  */
 async function carregarArquivosHTML() {
   const res = await fetch("../src/php/lista_html.php");
@@ -64,21 +67,22 @@ async function carregarArquivosHTML() {
 }
 ```
 
-**Fluxo de Trabalho:**
-
-1. Faz uma requisição para obter a lista de arquivos HTML.
-2. Popula um elemento `<select>` com as opções de arquivos.
+- **Descrição**: Esta função busca uma lista de arquivos HTML do servidor e popula um elemento `<select>` com as opções disponíveis.
+- **Fluxo**:
+  1. Faz uma requisição para obter a lista de arquivos.
+  2. Converte a resposta para JSON.
+  3. Itera sobre os arquivos e adiciona cada um como uma opção no elemento de seleção.
 
 ### Função `iniciarGeracao`
 
-Inicia o processo de geração de documentação para o arquivo HTML selecionado.
-
 ```js
 /**
- * Inicia o processo de geração de documentação para o arquivo selecionado.
- * @async
  * @function iniciarGeracao
- * @returns {Promise<void>} - Promessa que representa a conclusão da operação de geração.
+ * @description Inicia o processo de geração da documentação para o arquivo selecionado.
+ * @async
+ * @returns {Promise<void>}
+ * @example
+ * iniciarGeracao();
  */
 async function iniciarGeracao() {
   const arquivo = document.getElementById("arquivoInicial").value;
@@ -107,18 +111,15 @@ async function iniciarGeracao() {
 }
 ```
 
-**Fluxo de Trabalho:**
+- **Descrição**: Esta função inicia a geração da documentação para o arquivo selecionado e atualiza o status em tempo real.
+- **Fluxo**:
+  1. Obtém o arquivo selecionado.
+  2. Exibe um overlay de carregamento.
+  3. Atualiza o status para indicar o início do processo.
+  4. Faz uma requisição para o servidor para iniciar a geração.
+  5. Lê a resposta em partes, decodificando e atualizando o status conforme os dados são recebidos.
+  6. Oculta o overlay de carregamento ao final do processo.
 
-1. Obtém o arquivo selecionado pelo usuário.
-2. Exibe um overlay de carregamento.
-3. Faz uma requisição para iniciar a geração da documentação.
-4. Atualiza o status com o progresso da geração.
-5. Remove o overlay de carregamento ao concluir.
+## Considerações Finais
 
-## Considerações de Conformidade
-
-- **GAMP5**: O sistema é projetado para ser robusto e fácil de manter, com foco na qualidade do software.
-- **FDA 21 CFR Part 11**: As operações são realizadas de forma segura, garantindo a integridade dos dados.
-- **ANVISA**: A documentação gerada está em conformidade com os requisitos regulatórios para sistemas de software.
-
-Esta documentação fornece uma visão abrangente das funcionalidades e do fluxo do sistema, garantindo que os desenvolvedores possam entender e manter o sistema de forma eficaz.
+Este sistema foi projetado para ser robusto e atender aos requisitos regulatórios, garantindo a integridade e a rastreabilidade dos registros eletrônicos. A documentação gerada é essencial para a conformidade e a manutenção da qualidade do software.
