@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.5.1...v1.5.2) (2025-08-06)
+
+
+### Bug Fixes
+
+* menu mobile ([a496c35](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/commit/a496c35830823a37a9c46fb5294a7962b554620c))
+
 ## [1.5.1](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.5.0...v1.5.1) (2025-08-06)
 
 
