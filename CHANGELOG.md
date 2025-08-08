@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.5.3...v1.5.4) (2025-08-08)
+
+
+### Bug Fixes
+
+* estouro de scale benefit-grid ([bf64f78](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/commit/bf64f786124ca1ef386c499d8246e15b3f2a52fe))
+
 ## [1.5.3](https://github.com/Dotter-Brasil/modelo-ci-cd-versionamento/compare/v1.5.2...v1.5.3) (2025-08-08)
 
 
