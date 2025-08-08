@@ -147,6 +147,9 @@ nav ul li a:hover {
     width: 100%;
     max-width: 300px; /* Ajuste conforme necessário */
   }
+  .seletor {
+    flex-direction: column;
+  }
   .menu {
     display: flex;
   }
@@ -207,12 +210,11 @@ nav ul li a:hover {
 }
 
 .benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  align-items: center;
+  justify-content: left;
   gap: 20px;
   max-width: 100%;
-  overflow-x: hidden;
-  position: relative; /* Ajuda a conter elementos ::after */
 }
 
 .benefit {

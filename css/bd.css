@@ -69,6 +69,8 @@ a:link,
   display: flex;
   align-items: center;
   justify-content: left;
+  gap: 20px;
+  max-width: 100%;
 }
 
 button,
