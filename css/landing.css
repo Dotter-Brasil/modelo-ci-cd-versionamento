@@ -1,15 +1,6 @@
 /* Importando fonte moderna */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
-:root {
-  --cor-primaria: #003759;
-  --cor-secundaria: #44668eb8;
-  --cor-botao: linear-gradient(135deg, #2c3e50, #4ca1af);
-  --cor-botao-hover: #0a1a41e2;
-  --cor-fonte: #fff;
-  --tamanho-fonte: 16px;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -19,17 +10,12 @@
 }
 
 /* Corpo da página */
-body,
-html {
+body {
   /*justify-content: space-between;*/
   height: 100vh;
-  background: linear-gradient(
-    135deg,
-    var(--cor-primaria),
-    var(--cor-secundaria)
-  );
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
   background-attachment: fixed;
-  color: var(--cor-fonte);
+  color: #fff;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -42,8 +28,8 @@ header {
   align-items: center;
   max-width: 100vw;
   padding: 20px calc(5vw);
-  /*background: rgba(38, 61, 77, 0.2);*/
-  background: var(--cor-primaria);
+  background: rgba(38, 61, 77, 0.2);
+  /*background: #2c3e50;*/
   /*background: linear-gradient(135deg, #2c3e50, #4ca1af);*/
   position: fixed;
   width: 100%;
@@ -51,23 +37,14 @@ header {
   z-index: 1000;
 }
 
-.link {
-  margin-top: 10px;
-  font-size: 14px;
-  cursor: pointer;
-  color: #ddd;
-}
-
-a:link,
-:visited {
-  text-decoration: none;
-  color: white;
+p {
+  margin-block: 1em;
 }
 
 .logo {
   font-size: 1.5em;
   font-weight: 600;
-  color: var(--cor-fonte);
+  color: #ffffff;
 }
 
 nav ul {
@@ -95,10 +72,12 @@ nav ul li a:hover {
 }
 
 .menu {
-  display: none;
   position: absolute;
+  display: none;
+  cursor: pointer;
+  top: 75%;
   right: 5%;
-  bottom: 5%;
+  z-index: 999;
 }
 
 .listaMenu {
@@ -148,7 +127,7 @@ nav ul li a:hover {
     max-width: 300px; /* Ajuste conforme necessário */
   }
   .menu {
-    display: flex;
+    display: block;
   }
   .listaMenu ul {
     display: none;
@@ -167,10 +146,12 @@ nav ul li a:hover {
   }
   .listaMenu ul.active {
     display: flex; /* mostra a lista ao ativar */
+    background: white; /* Fundo para melhor visibilidade */
   }
 
   .listaMenu ul li a {
-    color: var(--cor-primaria);
+    color: #2c3e50;
+    background: white; /* Fundo para melhor visibilidade */
   }
 }
 
@@ -188,8 +169,8 @@ nav ul li a:hover {
   display: inline-block;
   margin-top: 15px;
   padding: 12px 25px;
-  background: var(--cor-secundaria);
-  color: var(--cor-fonte);
+  background: #4ca1af;
+  color: #ffffff;
   font-weight: bold;
   border-radius: 5px;
   text-decoration: none;
@@ -197,7 +178,7 @@ nav ul li a:hover {
 }
 
 .cta-button:hover {
-  background: var(--cor-botao-hover);
+  background: #367a8d;
 }
 
 .content-section {
@@ -212,18 +193,15 @@ nav ul li a:hover {
   gap: 20px;
   max-width: 100%;
   overflow-x: hidden;
-  position: relative; /* Ajuda a conter elementos ::after */
 }
 
 .benefit {
   background: white;
-  color: var(--cor-primaria);
+  color: #2c3e50;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
-  will-change: transform;
-  transform-origin: center;
 }
 
 .linhaV::after {
@@ -233,7 +211,7 @@ nav ul li a:hover {
   top: 500px; /* A linha começa de cima da explicação */
   width: 2px;
   height: 30px; /* Tamanho da linha */
-  background-color: var(--cor-secundaria); /* Cor da linha vertical */
+  background-color: #4ca1af; /* Cor da linha vertical */
   transform: translateX(-50%); /* Para centralizar a linha */
 }
 
@@ -251,7 +229,7 @@ form textarea {
 }
 
 form button {
-  background: var(--cor-secundaria);
+  background: #2c3e50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -260,20 +238,20 @@ form button {
 }
 
 form button:hover {
-  background: var(--cor-botao-hover);
+  background: #4d6c8a;
 }
 
 footer {
   text-align: center;
   padding: 20px;
-  background: var(--cor-primaria);
+  background: #2c3e50;
   color: white;
 }
 
 .content-section {
-  padding: 80px 10%;
-  text-align: center;
+  padding: 50px 10%;
   position: relative;
+  z-index: 1;
 }
 
 #funcionalidades,
